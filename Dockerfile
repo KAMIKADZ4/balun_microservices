@@ -23,7 +23,9 @@ RUN go build -o /bin/main
 # STAGE 2. FINAL STAGE
 #######################################
 
-FROM scratch AS final
+FROM alpine:3.19 AS final
+
+RUN apk add --no-cache curl
 
 WORKDIR /
 
