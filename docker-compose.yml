@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  auth-service:
+    container_name: bm_auth
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: "auth"
+    image: bm/auth_img:latest
+    ports:
+      - "5000:8080"
+    environment:
+      - PORT=8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health-check"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+  
+  users-service:
+    container_name: bm_users
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: "users"
+    image: bm/users_img:latest
+    ports:
+      - "5001:8080"
+    environment:
+      - PORT=8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health-check"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    
+  chats-service:
+    container_name: bm_chats
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: "chats"
+    image: bm/chats_img:latest
+    ports:
+      - "5002:8080"
+    environment:
+      - PORT=8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health-check"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+  
+  friends-service:
+    container_name: bm_friends
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: "friends"
+    image: bm/friends_img:latest
+    ports:
+      - "5003:8080"
+    environment:
+      - PORT=8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health-check"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
