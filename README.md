@@ -12,3 +12,7 @@ go fmt ./...
 ```
 docker image build --tag <service>_img --build-arg SERVICE=<auth/users/chats/friends> --file ./Dockerfile .
 ```
+
+Что сделать нужно 
+[ ] k8s blue/green & canary deploy
+[ ] ДЗ 2
